@@ -13,7 +13,8 @@ AsyncTCP
 
 WiFiネットワークを利用してWebサービス提供する場合、そのIPアドレスが分からなければWebサーバとして利用できません。
 このPolyWiFiPortal（非同期Webサーバシステム）は、ブラウザの接続をSoftAP接続から既存WiFiネットワーク接続に切り替えることができます。
-WebブラウザがAndroid OSである場合、接続するWiFiネットワークは１つです。Andoridで既存WiFiネットワークに接続設定した後に、このPolyWiFiPortalの非同期WebサーバのSoftAPに接続し、http://192.168.4.1/に接続すると、自動的に既存WiFiネットワークへの接続を切り替えて、Webサービスが利用できるようになります。
+
+WebブラウザがAndroid OSである場合、接続するWiFiネットワークは１つです。Andoridで既存WiFiネットワークに接続設定した後に、このPolyWiFiPortalの非同期WebサーバのSoftAPに接続し、http://192.168.4.1/ に接続すると、自動的に既存WiFiネットワークへの接続を切り替えて、Webサービスが利用できるようになります。
 
 PolyWiFiPortalは、起動するとSoftApと既存WiFiネットワークの両方への非同期Webサービスを開始します。
 既存WiFiネットワークへの接続は、接続時にIPアドレスが決まります。
