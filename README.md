@@ -19,7 +19,7 @@ WebブラウザがAndroid OSである場合、接続するWiFiネットワーク
 PolyWiFiPortalは、起動するとSoftApと既存WiFiネットワークの両方への非同期Webサービスを開始します。
 既存WiFiネットワークへの接続は、接続時にIPアドレスが決まります。
 SoftAp接続は、あらかじめSSID/passwordを指定し、IPアドレスをデフォルトの192.168.4.1に設定しています。
-PolyWiFiPortalは、SoftAp接続でhttp://192.168.4.1/にアクセスするWebブラウザ接続を既存WiFiネットワーク側のIPアドレスに切り替え、SoftAP接続を停止します。（SoftAPの停止でAndroidのWiFi接続が切り替わります。）
+PolyWiFiPortalは、SoftAp接続でhttp://192.168.4.1/ にアクセスするWebブラウザ接続を既存WiFiネットワーク側のIPアドレスに切り替え、SoftAP接続を停止します。（SoftAPの停止でAndroidのWiFi接続が切り替わります。）
 既存WiFiネットワークへの接続ができていない場合は、切り替えは行わず、SoftAPでの接続を継続します。
 
 使い方
