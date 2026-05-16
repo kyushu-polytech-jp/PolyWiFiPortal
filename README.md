@@ -1,8 +1,8 @@
 ﻿# PolyWiFiPortal
 
 このライブラリは、
-ESP32でWiFiを簡単に利用すること
-ESP32を非同期Webサーバとして簡単に利用すること
+〇ESP32でWiFiを簡単に利用すること
+〇ESP32を非同期Webサーバとして簡単に利用すること
 を目的に作成しています。非同期Webサーバ（ESPAsyncWebServer）とそれに必要な（AsyncTCP）は、事前にインストールしてください。
 
 ESPAsyncWebServer
@@ -11,9 +11,15 @@ ESPAsyncWebServer
 AsyncTCP
 	https://github.com/ESP32Async/ESPAsyncWebServer
 
-WiFiネットワークを利用してWebサービス提供する場合、そのIPアドレスが分からなければWebサーバとして
-利用できません。このWiFiPortalは、既存のWiFiネットワークに接続したESP32のWebサーバに、SoftAPを
-使って接続し、既存のWiFiネットワークから割り当てられたIPに切り替えるWebPortalの機能を提供します。
+WiFiネットワークを利用してWebサービス提供する場合、そのIPアドレスが分からなければWebサーバとして利用できません。
+このPolyWiFiPortal（非同期Webサーバシステム）は、ブラウザの接続をSoftAP接続から既存WiFiネットワーク接続に切り替えることができます。
+WebブラウザがAndroid OSである場合、接続するWiFiネットワークは１つです。Andoridで既存WiFiネットワークに接続設定した後に、このPolyWiFiPortalの非同期WebサーバのSoftAPに接続し、http://192.168.4.1/に接続すると、自動的に既存WiFiネットワークへの接続を切り替えて、Webサービスが利用できるようになります。
+
+PolyWiFiPortalは、起動するとSoftApと既存WiFiネットワークの両方への非同期Webサービスを開始します。
+既存WiFiネットワークへの接続は、接続時にIPアドレスが決まります。
+SoftAp接続は、あらかじめSSID/passwordを指定し、IPアドレスをデフォルトの192.168.4.1に設定しています。
+PolyWiFiPortalは、SoftAp接続でhttp://192.168.4.1/にアクセスするWebブラウザ接続を既存WiFiネットワーク側のIPアドレスに切り替え、SoftAP接続を停止します。（SoftAPの停止でAndroidのWiFi接続が切り替わります。）
+既存WiFiネットワークへの接続ができていない場合は、切り替えは行わず、SoftAPでの接続を継続します。
 
 使い方
 (1) ESPAsyncWebServerの使用に従って/index.html を実装し、次の様にportalを開始してください。
@@ -31,7 +37,7 @@ WiFiネットワークを利用してWebサービス提供する場合、そのI
 
 (2) Androidは、既存の接続したいWiFiネットワークに接続し、インターネット接続を確認しておきます。
 
-(3) ESP32を起動します。Androidで、SoftAP（SSIDは"ESP32-SETUP-番号"/passwordは"12345678"）に
+(3) ESP32（PolyWiFiPortal）を起動します。Androidで、SoftAP（SSIDは"ESP32-SETUP-番号"/passwordは"12345678"）に
 　　接続します。
 
 (4) AndroidのWebクライアントでSoftAPのデフォルトIPアドレス192.168.4.1にアクセスします。
@@ -42,8 +48,8 @@ WiFiネットワークを利用してWebサービス提供する場合、そのI
 　　http://192.168.4.1/ ページは、自動で http://WiFiのIP/index.html に接続を切り替えます。
 　　AndroidのSSID切り替えのために、Webページの切り替えは15秒待ってから行います。
 
-注：http://192.168.4.1/ 以外のpathにアクセスしてもSoftAPは停止しません。
-　　この場合、http://WiFiのIP/index.html と http://192.168.4.1/index.html が利用可能です。 
+注：http://192.168.4.1/ 以外のpathにアクセスしてもSoftAPは停止しません。（停止・切り替えを行うpathは"/"です）
+　　SoftAPが停止していないと、http://WiFiのIP/index.html と http://192.168.4.1/index.html の両方が利用できます。 
 
 参考：
 　　ESP32をWiFi Webサーバとして利用する場合、通常mDNSを利用してホストを参照します。
